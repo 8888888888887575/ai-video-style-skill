@@ -633,7 +633,7 @@ watermark, signature, text artifacts, subtitles, timecode
 
 ## 13 推荐模型（Model Mapping）· 必选
 
-> 模型能力口径见 `../models-模型能力矩阵.md`。手绘的选型逻辑是：**风格化能力 > 写实保真度**，一致性机制优先。
+> 模型能力口径见 `../models.md`。手绘的选型逻辑是：**风格化能力 > 写实保真度**，一致性机制优先。
 
 ### 主推
 

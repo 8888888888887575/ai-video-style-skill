@@ -563,7 +563,7 @@ static boring shot, no motion, slideshow effect
 | 两个爆发动作同镜 | 动作互相吞噬、肢体错乱 | 拆成两个 clip |
 | `slow motion` + `beat-synced cuts every 2 beats` | 慢镜被切碎，节奏矛盾 | 慢镜单独成镜，切点放在慢镜结束处 |
 | `film grain` + `glitch` + `chromatic aberration` 全开 | 画面脏、细节糊 | 最多留 2 个 |
-| `hand-drawn boiling line` + `high-gloss anime finish` | 风格打架，线条脏 | 手绘感请走 04-handdrawn-手绘2D动画.md |
+| `hand-drawn boiling line` + `high-gloss anime finish` | 风格打架，线条脏 | 手绘感请走 04-handdrawn.md |
 | 多角色 + `orbit camera` + 快切 | 角色脸全漂 | 群像镜用定机位或缓推 |
 | `emissive VFX key light` + `natural daylight` | 光源逻辑矛盾，画面发灰 | 战斗段压暗环境光 |
 
@@ -577,7 +577,7 @@ static boring shot, no motion, slideshow effect
 
 ## 13 推荐模型（Model Mapping）· 必选
 
-> 模型能力口径见 `../models-模型能力矩阵.md`。
+> 模型能力口径见 `../models.md`。
 
 ### 主推
 

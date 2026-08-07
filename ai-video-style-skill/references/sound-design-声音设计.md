@@ -39,15 +39,15 @@
 - `lip-sync`：对白口型同步（原生音频模型 Kling/MiniMax H3/Veo 支持）。
 - `SFX cue`：特定音效触发特定动作（开门声=门开）。
 
-**时间戳分镜里标注**：在 `timestamp-storyboard-秒级分镜法.md` 的每段时间轴写 `音乐: Bass Drop @ 0:08`、`音效: 玻璃碎 @ 0:04`。
+**时间戳分镜里标注**：在 `timestamp-storyboard.md` 的每段时间轴写 `音乐: Bass Drop @ 0:08`、`音效: 玻璃碎 @ 0:04`。
 
 ---
 
 ## 03 各风格声音要点
 
-- **PV / 音乐 MV**（styles-风格库/01）：必须 `beat-sync`；写明曲风（synthwave / lo-fi / orchestral）。
-- **AI 漫剧**（styles-风格库/05）：用 J-cut/L-cut 串情绪；对白用 `lip-sync`（Kling/MiniMax H3/Veo）。
-- **商业/产品**（styles-风格库/06）：`ASMR` 质感（液体、布料）、品牌 jingle。
+- **PV / 音乐 MV**（styles/01）：必须 `beat-sync`；写明曲风（synthwave / lo-fi / orchestral）。
+- **AI 漫剧**（styles/05）：用 J-cut/L-cut 串情绪；对白用 `lip-sync`（Kling/MiniMax H3/Veo）。
+- **商业/产品**（styles/06）：`ASMR` 质感（液体、布料）、品牌 jingle。
 - **悬疑/恐怖**（CyberJ 案例）：低频环境 + 突然 `sound rupture`。
 - **治愈/日常**：自然声（水流、风、鸟鸣）+ 轻配乐。
 

@@ -590,7 +590,7 @@ realistic hair strands, physically accurate lens flare
 | `volumetric light shafts` 但无 `haze/fog/dust` | 光柱不出现 | 必须补介质 |
 | `caustics` 但场景无透明物 | 无效 tag 占位，稀释权重 | 删除 |
 | `pristine showroom` + `edge wear / grime` | 材质描述自相矛盾 | 二选一 |
-| `hand-drawn / boiling line` + 任何 CG tag | 管线冲突，线条脏 | 手绘请走 `04-handdrawn-手绘2D动画.md` |
+| `hand-drawn / boiling line` + 任何 CG tag | 管线冲突，线条脏 | 手绘请走 `04-handdrawn.md` |
 | `clean digital render, zero grain` + `subtle sensor grain` | 直接矛盾 | 写实留 grain，产品/三渲二关 grain |
 
 ### 12.5 冲突避免清单
@@ -604,7 +604,7 @@ realistic hair strands, physically accurate lens flare
 
 ## 13 推荐模型（Model Mapping）· 必选
 
-> 模型能力口径见 `../models-模型能力矩阵.md`。
+> 模型能力口径见 `../models.md`。
 
 ### 主推（写实 CG）
 

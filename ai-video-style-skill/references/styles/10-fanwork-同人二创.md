@@ -121,7 +121,7 @@
 - 复刻：`original costume replicated` / `period-accurate outfit`。
 - 现代整活：`modern casual wear` / `office attire` / `street fashion`（反差萌）。
 - 联动：`keep original outfit in new world`（防被新世界风格同化）。
-- 换装：`outfit swap, same pose`（电商换装技术可复用，见 styles-风格库/06-commercial-商业电商产品视频.md）。
+- 换装：`outfit swap, same pose`（电商换装技术可复用，见 styles/06-commercial-商业广告.md）。
 
 ---
 
@@ -219,7 +219,7 @@
 
 ---
 
-## 13 · 推荐模型（风格 → 模型映射，见 models-模型能力矩阵.md）
+## 13 · 推荐模型（风格 → 模型映射，见 models.md）
 
 | 子类型 | 主推模型 | 备选 | 为何契合 |
 |---|---|---|---|

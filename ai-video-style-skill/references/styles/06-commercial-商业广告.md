@@ -2,7 +2,7 @@
 
 > 定位：面向品牌营销与电商转化的视频——产品 beauty shot、品牌 TVC、电商模特换装、珠宝 / 汽车 / 3C 精修、商业首尾帧。AIX Studio 工作流库中条目最多的商业化赛道。
 > 与写实 CG 的区别：**目标不是"像真的"，而是"卖得动"**——材质必须可信、文字必须可读、姿态必须可控。
-> 结构严格对齐 `_TEMPLATE-风格母版.md` 15 模块。提示词正文英文，中文仅作注释。
+> 结构严格对齐 `_TEMPLATE.md` 15 模块。提示词正文英文，中文仅作注释。
 
 ---
 
@@ -409,7 +409,7 @@ clean brand-colour wipe transitions between shots, minimal negative space for la
 
 ---
 
-## 13 推荐模型（Model Mapping · 见 models-模型能力矩阵.md）
+## 13 推荐模型（Model Mapping · 见 models.md）
 
 | 需求 | 主推 | 备选 | 为何契合 |
 |---|---|---|---|

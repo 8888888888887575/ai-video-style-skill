@@ -1,6 +1,6 @@
 # MiniMax H3 提示词实战手册（Prompt Cookbook）
 
-> 配套 `models-模型能力矩阵.md` 的 MiniMax H3 专条、`prompt-templates-提示词模板.md 模板 K`、`decision-matrix-决策映射.md Q14`。
+> 配套 `models.md` 的 MiniMax H3 专条、`prompt-templates.md 模板 K`、`decision-matrix.md Q14`。
 > 内容来源：MiniMax 官方《H3 使用手册》。本文件把「怎么写 H3 提示词」落成可直接照抄的结构与样例。
 > 何时看本文件：① 选了 H3 做多模态参考 / 精准编辑 / 带声音输出；② 给 H3 写提示词老翻车（脸漂移、口型对不上、想一镜到底却切镜、想卡点却没声）。
 
@@ -178,10 +178,18 @@ Shot 2 — 中近景半身 / 墙面文字背景：Detective B 对镜头 rap，�
 
 ---
 
-## 8. 参数速查（详见 `models-模型能力矩阵.md` MiniMax H3 专条）
+## 8. 参数速查（详见 `models.md` MiniMax H3 专条）
 
 - 时长 4–15s；分辨率 768p(短边768，可升 1440p) / **1440p(官方推荐，短边1440)**；24 FPS；原生双声道（所有结果默认带声）。
 - 输入：首/尾帧入口 图片 0/1/2 张([256,5760]，宽高比 5:2~2:5)；全能参考 图片≤9 / 视频≤3段(2–15s,总≤15s) / 音频≤3段(需配图或视频,2–15s,总≤15s)，**混合≤12 文件**。
 - 格式：视频 H.264/HEVC(内音 AAC/MP3)；图片 JPG/JPEG/PNG/WEBP/HEIC/HEIF；音频 WAV/MP3。
 - 大小：视频单 50MB / 图片单 30MB / 音频单 15MB；API 请求体 64MB（推荐用 URL 传素材）。
 - 提示词 ≤ 7000 字符。TTS 精准覆盖 11 语（中/英/日/韩/法/德/西等），衍生 40+ 语。
+
+## 9. 进阶：H3 官方 API 结构化格式（中英对照）
+
+本 cookbook 是**海螺 App / 网页端**的 `@图片1` 自然语言标注写法。若你要给 **Codex / Claude / Cursor 等外部 agent 直接调 H3 API**，用的是另一套结构化字段格式（字段名即 API 真实 token），见 **`h3-official-format.md`**（中英对照蒸馏自 MiniMax 官方 HuggingFace 文档）：
+
+- Base 四模式 T2VA / I2VA / FL2VA / L2VA 的 `integrated_multimodal_description` / `overall_soundscape` / `non_diegetic_music` 三字段写法、首/尾帧对齐指令、运镜三维度词表、`<d>[语言]` 台词格式。
+- 全参考模式（图/视频/音频参考 + 精准编辑）的六段结构 `subject_definitions` / `summary` / `retention_analysis` / `detailed_description` / 声景 / 配乐，四类标签 `<Subject N>` `<Picture N>` `<Video N>` `<Audio N>`，任务类型前缀与关系标记。
+- 飞书 `@` 写法 → 官方 API 字段的速查映射表在 §3。
