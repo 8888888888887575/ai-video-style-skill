@@ -32,8 +32,7 @@ ai-video-style-skill/
 │   │   └── 10-fanwork.md         # 二创整活 / 换脸 / 名场面复刻 / 鬼畜 / 跨IP联动
 │   ├── models.md                 # 2026 模型能力矩阵
 │   ├── prompt-templates.md       # 跨风格英文提示词模板速查（A–K，含 MiniMax H3 三段式 模板 K）+ 负向词库
-│   ├── h3-prompt-cookbook.md     # 【H3 专属】提示词实战手册：@标注13类/3段公式/镜头铁律/三类模式/避坑/真实示例
-│   ├── h3-official-format.md    # 【H3 官方 API】提示词格式中英对照：四模式字段 + 全参考模式六段结构（给外部 agent 直调用）
+│   ├── h3-guide-H3完整提示词指南.md   # 【H3 完整指南】App端@写法(Part A) + API结构化格式(Part B) + @↔API映射(§3)，已合并cookbook与official-format
 │   ├── cinematography.md         # 【技法】运镜/景别/构图/灯光/VFX 大词库
 │   ├── sound-design.md           # 【技法】声音桥 J-cut/L-cut、声场、音画同步
 │   ├── continuation.md           # 【技法】续拍/分镜串联/长剧情拆分/视频接龙

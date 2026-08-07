@@ -1,19 +1,21 @@
-# MiniMax H3 官方提示词格式规范（中英对照蒸馏 / Official Prompt Format）
+# MiniMax H3 提示词完整指南（中英对照 / Complete Prompt Guide）
 
-> 蒸馏自 MiniMax 官方 HuggingFace 仓库 `MiniMaxAI/MiniMax-H3` 两份文档：
-> - `docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md` —— **Base 四模式**（T2VA / I2VA / FL2VA / L2VA）
-> - `docs/VIDEO_PROMPT_WRITING_GUIDE_ref_en.md` —— **Full-Reference Mode（全参考模式）**
+> **两份来源，一套指南：**
+> - **海螺 App / 网页端写法**（`@图片1 人物参考` 自然语言标注）—— 蒸馏自 MiniMax 官方《H3 使用手册》。
+> - **官方 API 结构化格式**（字段名即 API 真实 token）—— 蒸馏自 MiniMax 官方 HuggingFace 仓库 `MiniMaxAI/MiniMax-H3` 两份文档：
+>   - `docs/VIDEO_PROMPT_WRITING_GUIDE_base_en.md`（Base 四模式）
+>   - `docs/VIDEO_PROMPT_WRITING_GUIDE_ref_en.md`（Full-Reference Mode 全参考模式）
 >
-> **本文件与 `h3-prompt-cookbook.md` 的关系（两套范式，语义对应）：**
-> - `h3-prompt-cookbook.md` = 海螺 **App / 网页端**的 `@图片1 人物参考` 自然语言标注写法（面向交互界面）。
-> - 本文件 = H3 **API 实际接受的结构化提示词格式**——字段名 / 标签（如 `integrated_multimodal_description`、`<Subject 1>`、`[Shot 1]`）就是 API 真实 token。
-> - 给 Codex / Claude / Cursor 等 agent **直接调 API** 时，用本文件的结构；用海螺网页/App 时，用 cookbook 的 `@` 写法。两者可互相映射（见 §3）。
+> **怎么用本文件**：
+> - 用海螺 App / 网页交互界面 → 看 **Part A**（`@` 自然语言写法）。
+> - 给 Codex / Claude / Cursor 等 agent **直接调 H3 API** → 看 **Part B**（结构化字段，字段名即真实 token）。
+> - 两套范式语义对应，对照表见 **§0**；飞书 `@` 写法 → API 字段的速查映射见 **§3**。
 
 ---
 
 ## 0. 两套范式对照（App `@` vs API 结构化）
 
-| 意图（中文） | 海螺 App 端（`@` 写法，见 cookbook） | H3 API 结构化（本文件） |
+| 意图（中文） | 海螺 App 端（`@` 写法，见 Part A） | H3 API 结构化（见 Part B） |
 |---|---|---|
 | 人物参考 / 锁脸 | `@图片1 是人物参考` | `<Subject 1> is the person in <Picture 1>...` + `subject_definitions` 段 |
 | 场景 / 风格参考 | `@图片2 是场景参考` | `<Subject 2> is the environment in <Picture 2>...` |
@@ -25,7 +27,197 @@
 
 ---
 
-## 1. Base 四模式（T2VA / I2VA / FL2VA / L2VA）
+# Part A — 海螺 App / 网页端写法（`@` 自然语言标注）
+
+> 何时看本部分：① 选了 H3 做多模态参考 / 精准编辑 / 带声音输出；② 给 H3 写提示词老翻车（脸漂移、口型对不上、想一镜到底却切镜、想卡点却没声）。
+
+## A0. 完整公式（铁律）
+
+```
+完整提示词 = 参考素材说明 + 核心创意 + 画面过程说明
+```
+
+- 三段顺序写、用【】标出三段标题最稳。
+- **没上传任何素材 → 整段「参考素材说明」跳过**，但「核心创意 + 画面过程说明」要写更细（见 A5 纯文字模式）。
+- 所有素材引用用 `@图片N / @视频N / @音频N`，N = 你上传的顺序号。
+
+---
+
+## A1. 参考素材说明（`@` 标注完整分类）
+
+写给 H3「每个上传文件是干什么用的」。写清 **编号 + 用途**。用途官方清单如下（按需取用）：
+
+| 标注写法 | 含义 / 锁什么 |
+|---|---|
+| `@图片1 人物参考` | 锁定脸 / 形象（最常用，锁一致性必写） |
+| `@图片N 物体参考` | 锁定某个物体（产品、道具、眼镜…） |
+| `@图片N 场景参考` | 锁定场景 / 环境 |
+| `@图片N 关键帧` | 锁定首帧 / 尾帧（有明确首尾帧需求时写明） |
+| `@图片N 音色参考` | 锁定音色（配合音频复用） |
+| `@图片N 故事版` | 按故事版分镜生成镜头内容 |
+| `@图片N 风格参考` | 按图片风格生成类似风格内容 |
+| `@图片N 构图参考` | 按图片中物体构图生成对应构图 |
+| `@视频N 动作参考` | 锁定动作 / 表演节奏 |
+| `@视频N 运镜参考` | 锁定运镜 |
+| `@视频N 视频编辑` | 对视频某内容增删改（精准编辑入口） |
+| `@音频N 音频复用` | 生成视频的音频**整体**直接复用参考音频 |
+| `@音频N 音频部分复用` | 某声音轨 / 某时间段**部分**复用参考音频 |
+
+规则：
+- **想锁脸但没传图 = 必失败**。要脸一致一定上传人物参考图并标「人物参考」。
+- 素材里有极想保住的特征，**明确写出来**比只标类型一致性更好（如「保持黑色半扎长发、银色镂空发冠一致」）。
+- 音频复刻 / 部分复刻，若对**人声对白 / 唱歌歌词**保持要求高，**强烈建议补具体歌词原文**：`@音频1 作为音频复刻素材，具体歌词是："ABCDEFG"`。
+
+示例：
+> @图片1 提供了 xx 角色的形象（多角色时逐个指代清楚），@视频2 提供了动作参考。
+
+---
+
+## A2. 核心创意（一句话锁全片）
+
+必须含 5 要素：**主体 + 地点 + 事件 + 题材/风格 + 特殊运镜**。
+
+- 主体：谁/什么（人/物/动物）。
+- 地点：在哪里。
+- 事件：在做什么。
+- 题材/风格：写实 / 动画 / 电影感 / 广告片 / 纪录片 / 赛博朋克 / 霓虹灯美学 / 涂鸦风…
+- 特殊运镜：**默认会切镜**。要特殊镜头写明——航拍 / 一镜到底 / 慢动作。
+  - 环绕运镜**别写「环绕」**，写 `truck left+pan right` 或 `truck right+pan left`。
+  - 切镜风格写明其一：普通切镜(cut) / 叠化(fade) / 卡点切镜 / 快切。
+- 任何元素直接关联引用素材，用 `@图片1 / @音频1` 强调。
+
+示例：
+> 一位穿汉服的年轻女子（@图片1）在樱花纷飞的庭院里舞剑，古典国风，电影质感，一镜到底。
+
+---
+
+## A3. 画面过程说明（按 shot 分段）
+
+每个分镜 / 时间段写两部分：**想要**（画面里要出现什么）+ **不想要**（不要出现什么）。
+
+「想要」每段含：**景别 + 内容 + 运镜 + 动作 + 台词 + 音效**。
+- 以切镜 shot 作时间戳分段；shot 内写好景别、内容、内部运镜、台词、音效。
+- **台词长短对齐镜头**（见 A4，口型问题的头号根源）。
+- 想让视频出现**具体文字 / Logo / 标题 / 标语 / 按钮文案 → 必须写出原文**：
+  > 手机屏幕上显示标题："AI Video Creation"，按钮文字为："Start Now"。
+
+---
+
+## A4. 镜头拆分铁律（翻车高发区）
+
+1. **台词长度 ≈ 镜头长度**：避免 3s shot 说一大段话，口型必崩。
+2. **跨 shot 台词（J-cut / L-cut）H3 能响应**：只要明确写出一句台词跨了哪些 shot 即可，例如「接着上个 shot 继续说…」。
+   - 画外音转画内：写明「一个画外音响起说：Wake up。之后切镜到中年妇女近景，她是画外音主人，继续说道：It's time to go to school!」
+3. **切镜一致性**：切镜时写清「切到什么景别 + 具体是之前的哪个角色」，跨镜头一致性更好。
+
+---
+
+## A5. 三类模式，提示词分别怎么写
+
+### A. 多模态素材融合（多模态参考）
+同时传 人物图 + 动作视频 + 场景图 + 音乐，**每个素材写清角色**：
+> @图片1 是人物参考（锁这位女子的脸），@视频1 是动作参考（用里面的舞剑动作），@音频1 是情绪参考（古风配乐）。让这位女子在樱花庭院里按视频里的动作舞剑。
+
+### B. 图生视频（首/尾帧）
+- **只传 1 张**：说清是**首帧**（开头画面）还是**尾帧**（结尾画面）。
+- **传 2 张（首+尾帧）**：H3 **不会自动加切镜**，只补两帧之间的动作、光影、声音。
+> @图片1 是首帧参考图：女子持剑站在樱花树下。让她从持剑起势到舞剑完毕，自然衔接，不要切镜。
+
+### C. 纯文字生成（无素材）
+不依赖参考，直接建主体/场景/动作。**文字要更具体**，多用「大全景交代空间 + 中景承载动作 + 特写强调细节」分层：
+> 写实自然纪录片风格，电影级真实光影。清晨薄雾中，广阔湿地芦苇荡里，一只优雅白鹤单腿站立浅水中，缓慢转头看向镜头。柔和逆光，雾气在光束里飘动。
+
+---
+
+## A6. 容易踩的坑（对照自查）
+
+| 常见问题 | 怎么改 |
+|---|---|
+| 只写一段话没分段 | 按 3 段公式拆开写 |
+| 素材上传了但没说用途 | 补一句「@图片1 是 XX 参考」 |
+| 想用音乐但写「不要 BGM」 | 矛盾，删一个或分场景写 |
+| 想一镜到底却写了很多分镜 | 全文保持一段情节描述，删掉【镜头 N】结构 |
+| 想要主角脸一致但没传图 | 必传人物参考图并标「人物参考」 |
+| 提示词太短（无素材时） | 至少写 主体外观 + 场景细节 + 动作 + 风格 |
+
+---
+
+## A7. 真实示例（来自官方手册，已清理平台特有引用）
+
+### 示例 1 — 大字幕 Trap MV（多素材 + Shot 级分镜 + 文字原文 + 卡点）
+```
+【参考素材说明】@图片3：场景视觉风格（街道/夜间/地下空间、压迫感构图、环境层次、影像颗粒）
+@图片2：文字包装样式（字体质感、图形设计、动态图形排版冲击力）
+@图片1：人物形象（脸、发型、服装轮廓、比例、气质、氛围），只参考指定维度，不出现真实品牌/原 logo/可识别文字。
+【核心创意】10秒，16:9 横版 trap MV。两位 fly detective 兄弟在多个近景地下空间轮流对镜头 rap，
+全程跟随 trap 鼓点律动、卡点硬切，高反差印刷海报质感的英文块字随 bass hit 压屏出现。
+地下音乐录像带 + 时尚杂志拼贴 + 高时装质感，兄弟搭档式冷峻 performance。
+【画面过程描述】
+Shot 1 — 面部极近特写 / 通道压迫感：Detective A 直视镜头开始 rap，眼神冷静锐利；
+文字 "TWO FLY" 巨大粗体英文压入画面上下，不遮挡眼睛；律动：808 bass 砸下，"TWO FLY" 瞬间纵向压缩后回弹。
+（硬切）
+Shot 2 — 中近景半身 / 墙面文字背景：Detective B 对镜头 rap，肩膀头部跟 hi-hat 点拍；
+文字 "CLUES" 在人物身后，被头发/肩膀自然遮挡；律动：每个 snare 时文字突然放大、抖动。
+（硬切）… Final — 多场景近景 performance montage；主文字 "CASE CLOSED" 巨大压入；
+律动随 808 bass hit 硬切重组。禁止全身、禁止多人全景，只用近景/中近景/面部特写/手部特写。
+```
+要点：文字原文写出 + 每个 shot 标景别/内容/运镜/台词/音效 + 卡点硬切 + 跨 shot 用「（硬切）」衔接。
+
+### 示例 2 — 国风舞剑（多模态 3 段式，锁脸+锁动作+带声）
+```
+【参考素材说明】@图片1：人物参考（锁这位女子的脸与汉服）；@视频1：动作参考（用里面的舞剑动作）；@音频1：情绪参考（古风配乐，音频整体复用）
+【核心创意】10秒，16:9，一位穿汉服的年轻女子在樱花纷飞的庭院里舞剑，古典国风，电影质感，一镜到底。
+【画面过程说明】从持剑起势到舞剑完毕，自然衔接不切镜；樱花随风飘落，镜头轻微环绕（truck left+pan right）；
+结尾女子收势，花瓣定格。音频整体复用 @音频1 的古风配乐。
+```
+
+### 示例 3 — 游戏 UI 角色装备（分秒级分镜，无素材参考结构）
+```
+角色参考图1，UI风格参考图2。
+[0秒-2秒] 高角度俯拍。角色坐在亮紫色地面，参考图1，抬头看向摄像机。右侧显示游戏菜单 UI：开始新游戏 /
+继续游戏(高亮) / 设置 / 退出游戏。左上角显示玩家资料 MINIMAX。光标点击"继续游戏"。
+[2秒-4秒] 平滑变焦至右臂。UI 面板从右侧滑入，"右臂装备" 面板出现，选中高亮 "幻影之握"，滑动至 "时空之爪"；
+右手机械重新配置，青色 LED 灯闪烁更亮。
+[4秒-7秒] 摄像机平滑绕到左侧。新 UI 滑入 "武器定制" 网格；左臂逐段拆解更换，可见暴露线路和活塞。
+[7秒-8.5秒] 拉回中景。确认配置按钮闪烁，点击，UI 向内收缩消失。
+[8.5秒-10秒] 底部出现加载条 0%→100%。环境变暗，暖金光芒渗入。
+[10秒-15秒] 她起身，完整赛博朋克贫民窟加载，第三人称视角位于她身后。
+```
+要点：用 `[起止秒数]` 分段 + 每段景别/内容/运镜/UI 文字原文 + 角色参考图锁身份。
+
+### 示例 4 — 精准编辑（在已有视频上改局部，不动其余）
+```
+# 角色/物体替换
+把视频中的猫换成狗。
+# 场景背景替换（高精度指令遵循示范）
+将原视频中的桌面替换为标准办公室工位办公桌，背景整体替换为带百叶窗与金属文件柜的办公环境。
+新办公桌透视比例需与原镜头完全匹配，桌面材质自然承接原视频光影投射，边缘阴影与高光方向必须与原场景光源严格一致。
+背景百叶窗与文件柜的景深虚化程度需与原视频焦点对齐，保持原有空间纵深感。
+在此过程中，原视频的镜头运动轨迹、机械臂完整运动时序与速度、画面中其他物品相对位置与空间遮挡关系、
+以及整体光照氛围必须保持 100% 不变，确保替换元素与原画面无缝融合。
+# 台词/音色修改
+将视频1女生说的话："我们之间不可能在一起的，不是不爱，是我们真的走不到最后的"，
+改成音频1的台词："别走了，好吗？这一次，我们不要放开彼此"，并略微调整对应的表演。
+```
+要点：精准编辑 = 参考视频 + 明确「改什么 + 保持不变清单」。一次性可堆多条局部指令（换报纸→绿书、椅子→红沙发、去墨镜、去燃烧、照片→黑本子、左侧加树），H3 高精度指令遵循可一并执行。
+
+---
+
+## A8. 参数速查
+
+- 时长 4–15s；分辨率 768p(短边768，可升 1440p) / **1440p(官方推荐，短边1440)**；24 FPS；原生双声道（所有结果默认带声）。
+- 输入：首/尾帧入口 图片 0/1/2 张([256,5760]，宽高比 5:2~2:5)；全能参考 图片≤9 / 视频≤3段(2–15s,总≤15s) / 音频≤3段(需配图或视频,2–15s,总≤15s)，**混合≤12 文件**。
+- 格式：视频 H.264/HEVC(内音 AAC/MP3)；图片 JPG/JPEG/PNG/WEBP/HEIC/HEIF；音频 WAV/MP3。
+- 大小：视频单 50MB / 图片单 30MB / 音频单 15MB；API 请求体 64MB（推荐用 URL 传素材）。
+- 提示词 ≤ 7000 字符。TTS 精准覆盖 11 语（中/英/日/韩/法/德/西等），衍生 40+ 语。
+
+---
+
+# Part B — 官方 API 结构化格式（给 Codex / Claude / Cursor 直调）
+
+> 本部分 = H3 **API 实际接受的结构化提示词格式**——字段名 / 标签（如 `integrated_multimodal_description`、`<Subject 1>`、`[Shot 1]`）就是 API 真实 token。
+
+## B1. Base 四模式（T2VA / I2VA / FL2VA / L2VA）
 
 四种模式区别只在"是否给参考图、图放在开头还是结尾"：
 
@@ -36,7 +228,7 @@
 | **FL2VA** | First-Last T2VA | 首+尾帧生视频 | 有，指定首帧+尾帧 |
 | **L2VA** | Last T2VA | 尾帧生视频（倒推开头） | 有，指定尾帧 |
 
-### 1.1 终稿结构（Final Prompt Structure）
+### B1.1 终稿结构（Final Prompt Structure）
 
 **Part One — 对齐指令（Instruction，仅 I2VA / FL2VA / L2VA 有；T2VA 没有，直接进 Part Two）**
 
@@ -70,7 +262,7 @@ non_diegetic_music: ...
 | `overall_soundscape` | 整体声景 | 1–4 句英文，概括环境音 / 物理动作音 / 非语言人声（台词/歌已在上面） |
 | `non_diegetic_music` | 非剧情音乐 | 1–3 句，只描述"角色听不到、仅观众可听"的配乐（乐器/速度/节奏/动态） |
 
-### 1.2 沿时间线展开 multimodal description
+### B1.2 沿时间线展开 multimodal description
 
 - `[Shot 1]` 开头**不写时间戳**；后续镜头用 `[Shot N] At MM:SS.mmm, ...`（切镜时间必须严格递增且在视频时长内）：
   ```text
@@ -81,14 +273,14 @@ non_diegetic_music: ...
   `Cinematic` / `live-action` / `2D-animated` / `3D CG` / `claymation`(黏土) / `watercolor`(水彩) / `vintage film`(复古胶片)
 - 图生任务从参考图推导风格；纯文生从用户文字选风格。
 
-### 1.3 镜头与切镜（Shots and Cuts）
+### B1.3 镜头与切镜（Shots and Cuts）
 
 - 普通切镜动词：`the camera cuts to` / `the shot cuts to` / `the shot transitions to` / `the shot changes to` / `the shot switches to`。
 - 用户明确要求时可用 cross-dissolve(叠化) / fade(淡入淡出) / wipe(擦除)。
 - 切镜必须带来**新信息**（主体/空间/状态/视角/时间）。若只改距离或微角度，优先用**运镜**而非切镜。
-- 跨 cut 的连续性写法：`continues seamlessly across the cut` / `continues uninterrupted into the next shot` / `carries over from the previous shot` / `remains audible across the transition`.
+- 跨 cut 的连续性写法：`continues seamlessly across the cut` / `continues uninterrupted into the next shot` / `carries over from the previous shot` / `remains audible across the transition`。
 
-### 1.4 运镜三维度（Motion Type + Amplitude + Speed）
+### B1.4 运镜三维度（Motion Type + Amplitude + Speed）
 
 完整运镜词表（保留英文原词，配中文）：
 
@@ -116,7 +308,7 @@ The camera pans right with large amplitude at fast speed, revealing the open doo
 The camera holds a static shot as the runner exits the frame.
 ```
 
-### 1.5 说话人 / 台词 / 歌唱（Speakers, Dialogue, Singing）
+### B1.5 说话人 / 台词 / 歌唱（Speakers, Dialogue, Singing）
 
 - 说话/歌唱/画外人声用**稳定 ID**：`(S1)` `(S2)`，多人同说用复合 ID `(S1,S2)`。同一说话人跨镜头 ID 不变；不发声的角色不给 ID。
 - 台词格式：`<d>[语言标签] 原文</d>`——**原文逐字保留，不翻译不改写**：
@@ -128,14 +320,14 @@ The camera holds a static shot as the runner exits the frame.
 - **画外音（voiceover）**：用 `says in an off-screen voiceover`，并在其后注明 `while his lips remain completely closed`（嘴保持闭合）。
 - **台词跨 cut**：在连接点两侧都用 `<scenetrans>`，并明确 `the audio continues across the cut`；视频结束截断用 `<cutoff>`。
 
-### 1.6 屏幕文字（On-Screen Text）
+### B1.6 屏幕文字（On-Screen Text）
 
 - 画面里实际可见的标语/招牌/字幕/霓虹字，用**英文双引号**包裹，原文逐字保留（不翻译）：
   ```text
   A red neon sign reading "营业中" glows above the doorway.
   ```
 
-### 1.7 overall_soundscape / non_diegetic_music 写法
+### B1.7 overall_soundscape / non_diegetic_music 写法
 
 - `overall_soundscape`：1–4 句英文连续段落，概括全程环境音/物理动作音/非语言人声（风、雨、交通、脚步、布料、撞击、呼吸、笑、喘）。台词/歌/画内乐已在 multimodal 里，这里不重复。用户要求全程静音才用 `N/A`。
   ```text
@@ -146,7 +338,7 @@ The camera holds a static shot as the runner exits the frame.
   non_diegetic_music: Sparse piano notes at a slow tempo, joined by sustained low strings that gradually increase in volume before fading out.
   ```
 
-### 1.8 四个官方 Case（原样保留英文，附中文要点）
+### B1.8 四个官方 Case（原样保留英文，附中文要点）
 
 **Case 1 — T2VA（纯文生）**
 ```text
@@ -196,11 +388,11 @@ non_diegetic_music: A low electronic pulse at a slow tempo, ending immediately a
 
 ---
 
-## 2. Full-Reference Mode（全参考模式）— 图/视频/音频参考 + 精准编辑
+## B2. Full-Reference Mode（全参考模式）— 图/视频/音频参考 + 精准编辑
 
 用于：上传参考图/视频/音频，或做角色/物体/背景/光影替换、台词/音色修改等精准编辑。输出是**六段固定结构**（全英文写，仅 `<d>` 内台词/歌词和画面可见文字保留原文语言）。
 
-### 2.1 六段结构（顺序固定）
+### B2.1 六段结构（顺序固定）
 
 | 段（英文原文） | 中文 | 作用 |
 |---|---|---|
@@ -211,7 +403,7 @@ non_diegetic_music: A low electronic pulse at a slow tempo, ending immediately a
 | `overall_soundscape` | 整体声景 | 环境音/物理音 |
 | `non_diegetic_music` | 非剧情音乐 | 仅观众可听配乐 |
 
-### 2.2 四类参考标签（Reference Labels）
+### B2.2 四类参考标签（Reference Labels）
 
 | 标签（英文原文） | 中文 | 用法 |
 |---|---|---|
@@ -229,7 +421,7 @@ non_diegetic_music: A low electronic pulse at a slow tempo, ending immediately a
 - `<Video N>` 只留给"整视频关系"（编辑/续拍/结构）；视频里复用的人/物/动作仍归 `<Subject N>`。
 - `<Audio N>` 若对应某说话人，复用其全局 `(Sx)`：`[Audio N] is the voice-timbre reference for <Subject X> (Sx).`
 
-### 2.3 任务类型前缀（summary 开头，方括号）
+### B2.3 任务类型前缀（summary 开头，方括号）
 
 | 任务类型（英文原文） | 中文 | 何时用 |
 |---|---|---|
@@ -243,7 +435,7 @@ non_diegetic_music: A low electronic pulse at a slow tempo, ending immediately a
 - 多关系用 `+` 组合不重复，如 `[video continuation + keyframe completion]`；编辑源视频且保留原音 → `[video editing + audio reuse]`。
 - 视频编辑类 summary 以 `The target video is an edited version of <Video 1>.` 开头。
 
-### 2.4 关系标记（Relationship Markers，固定英文值）
+### B2.4 关系标记（Relationship Markers，固定英文值）
 
 | 类别 | 标记（英文原文） | 中文 |
 |---|---|---|
@@ -263,7 +455,7 @@ non_diegetic_music: A low electronic pulse at a slow tempo, ending immediately a
 <Audio 1>: fully_copy - <Audio 1> is reused 1:1 as the target video's complete final audio track.
 ```
 
-### 2.5 detailed_description 要点
+### B2.5 detailed_description 要点
 
 - 生成任务通常 **350–500 英文词**；台词密集优先塞满台词时间线而非机械凑字数。视频编辑类随源视频复杂度伸缩。
 - 风格在 `[Shot 1]` **之前**用 1–2 句英文开门：
@@ -275,7 +467,7 @@ non_diegetic_music: A low electronic pulse at a slow tempo, ending immediately a
 - 具体帧锚用自然短语：`the shot begins from <Picture 1>` / `the shot's keyframe corresponds to <Picture 2>` / `the shot ends on <Picture 3>`。
 - 说话人/音频源：被引用主体实发声 → 同时写 `<Subject N> (Sx)`；同一主体画外音 → 同形式标 `off-screen`；说话人不对应已定义主体 → 稳定声音描述 + `(Sx)`。若人声只存在于直接复用的 BGM/完整音轨里、无具体人产生 → 用 `<Audio N>` 作可听源，**不要**另造 `(Sx)`。
 
-### 2.6 完整官方示例（咖啡店 Samoyed 案例，原样保留英文）
+### B2.6 完整官方示例（咖啡店 Samoyed 案例，原样保留英文）
 
 ```text
 subject_definitions:
@@ -311,9 +503,9 @@ N/A
 
 ---
 
-## 3. 给中文用户的速查（飞书 `@` 写法 → 官方 API 字段映射）
+## §3. 飞书 `@` 写法 → 官方 API 字段 速查映射
 
-| 你想做的（中文） | 海螺 App 端写法（cookbook） | 官方 API 结构化写法（本文件） |
+| 你想做的（中文） | 海螺 App 端写法（Part A） | 官方 API 结构化写法（Part B） |
 |---|---|---|
 | 锁脸 / 人物参考 | `@图片1 是人物参考` | `subject_definitions` 里 `<Subject 1> is the person in <Picture 1>...`；I2VA 首帧指令引用 `<Picture 1>` |
 | 固定场景/服装 | `@图片2 是场景参考` | `<Subject 2> is the environment in <Picture 2>...` |

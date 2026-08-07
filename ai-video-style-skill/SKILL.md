@@ -34,8 +34,7 @@ description: >-
 - `references/styles/_TEMPLATE-模板.md` — 新增风格的母版模板
 - `references/models-模型库.md` — 2026 模型能力矩阵（分维度细评 + 按风格速查）
 - `references/prompt-templates-提示词模板.md` — 跨风格英文提示词速查模板 A–K（含 MiniMax H3 三段式 模板 K）+ 通用负向词库
-- `references/h3-prompt-cookbook-H3实战手册.md` — **MiniMax H3 专属提示词实战手册**：@标注完整分类(13类)、3 段公式子清单、镜头拆分铁律(J-cut/L-cut/台词对齐)、三类模式写法、避坑表、真实示例、参数速查。写 H3 提示词前必看
-- `references/h3-official-format-H3官方API格式.md` — **MiniMax H3 官方 API 提示词格式（中英对照）**：base 四模式(T2VA/I2VA/FL2VA/L2VA) 结构化字段 + 全参考模式六段结构，给 Codex/Claude 等 agent 直调 API 用；与 cookbook 的 `@` 写法对应见 §3
+- `references/h3-guide-H3完整提示词指南.md` — **MiniMax H3 完整提示词指南（中英对照，已合并两份）**：Part A=海螺 App 端 `@` 自然语言写法（13类@标注/3段公式/镜头铁律/三类模式/避坑/4真实示例/参数速查）；Part B=官方 API 结构化格式（Base 四模式字段 + 全参考模式六段结构 + `<Subject/Picture/Video/Audio>` 标签）；开头 §0 两套范式对照 + 末尾 §3 `@`↔API 字段映射。写 H3 提示词前必看
 - `references/decision-matrix-决策映射.md` — 风格→模型→文件映射 + 决策流程 + 输出格式 + 反模式
 - `references/cinematography-镜头语言.md` — **通用运镜/景别/构图/灯光/VFX 大词库**（各风格文件按需引用）
 - `references/sound-design-声音设计.md` — 声音桥 J-cut/L-cut、声场、音画同步/卡点、模型原生音频
