@@ -33,6 +33,7 @@ ai-video-style-skill/
 │   ├── models.md                 # 2026 模型能力矩阵
 │   ├── prompt-templates.md       # 跨风格英文提示词模板速查（A–K，含 MiniMax H3 三段式 模板 K）+ 负向词库
 │   ├── h3-guide-H3完整提示词指南.md   # 【H3 完整指南】App端@写法(Part A) + API结构化格式(Part B) + @↔API映射(§3)，已合并cookbook与official-format
+│   ├── seedance2-guide-即梦Seedance2完整指南.md  # 【Seedance 2.0 完整指南】与H3平行的即梦手册蒸馏：@写法(Part A)+能力映射(Part B)+15Case拆解(Part C)+与H3对照(§0/§3)
 │   ├── cinematography.md         # 【技法】运镜/景别/构图/灯光/VFX 大词库
 │   ├── sound-design.md           # 【技法】声音桥 J-cut/L-cut、声场、音画同步
 │   ├── continuation.md           # 【技法】续拍/分镜串联/长剧情拆分/视频接龙
