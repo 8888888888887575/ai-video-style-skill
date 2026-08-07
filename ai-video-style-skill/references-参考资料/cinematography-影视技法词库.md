@@ -1,7 +1,7 @@
 # 影视技法大词库（Cinematography Vocabulary）
 
 > 通用、跨风格可复用的**镜头运动 / 景别 / 构图 / 灯光 / VFX** 词库。来源综合 `ai9app/AI-Cinematic-Prompt-Director`（250 影视词典）、`ELK-milu/Seedance2-skill`（100+ 运镜词）、`lmr1123/seedance-video-prompt`（运镜手册）、Runway 官方 prompting guide。
-> 用法：各风格文件（`styles/01-*.md` 等）里的「景别/光影/动作运动」模块可直接引用本词库，不必重复罗列。提示词正文英文，中文作注释。
+> 用法：各风格文件（`styles-风格库/01-*.md` 等）里的「景别/光影/动作运动」模块可直接引用本词库，不必重复罗列。提示词正文英文，中文作注释。
 
 ---
 
@@ -92,11 +92,11 @@
 
 ## 05 与风格文件的联动（速记）
 
-- **PV/音乐 MV**（styles/01）：多用 `whip pan / orbit / rack focus / beat-sync move`，节奏驱动。
-- **CG**（styles/02）：`volumetric lighting / anamorphic / bloom`，电影级渲染。
-- **手绘**（styles/04）：避免 `photorealistic lens`，用 `flat shading, minimal grain`；`boiling line` 生死线。
-- **AI 漫剧**（styles/05）：`dolly zoom`（希区柯克）、`OTS` 对话、`push in` 情绪。
-- **商业**（styles/06）：`product hero lighting / soft diffuse / macro rotate`。
-- **建筑**（styles/07）：`wide shot + golden hour + volumetric`。
-- **写真**（styles/08）：`85mm CU + shallow DOF + window light`。
-- **二创整活**（styles/10）：`seamless loop`（鬼畜）、`shot-for-shot`（复刻）。
+- **PV/音乐 MV**（styles-风格库/01）：多用 `whip pan / orbit / rack focus / beat-sync move`，节奏驱动。
+- **CG**（styles-风格库/02）：`volumetric lighting / anamorphic / bloom`，电影级渲染。
+- **手绘**（styles-风格库/04）：避免 `photorealistic lens`，用 `flat shading, minimal grain`；`boiling line` 生死线。
+- **AI 漫剧**（styles-风格库/05）：`dolly zoom`（希区柯克）、`OTS` 对话、`push in` 情绪。
+- **商业**（styles-风格库/06）：`product hero lighting / soft diffuse / macro rotate`。
+- **建筑**（styles-风格库/07）：`wide shot + golden hour + volumetric`。
+- **写真**（styles-风格库/08）：`85mm CU + shallow DOF + window light`。
+- **二创整活**（styles-风格库/10）：`seamless loop`（鬼畜）、`shot-for-shot`（复刻）。

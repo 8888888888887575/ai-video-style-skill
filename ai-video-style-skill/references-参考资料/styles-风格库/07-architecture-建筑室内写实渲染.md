@@ -2,7 +2,7 @@
 
 > 定位：建筑立面 / 室内空间 / 装修效果图的写实渲染视频——草图转写实、效果图换季节、毛坯转精装、平面转实景、光追设计。AIX Studio「AI + 设计院 / 家装」高频赛道。
 > 与通用写实 CG 的区别：**结构比例不可错**。建筑观众能一眼看出层高、开间、梁柱是否合理，因此本类几乎全程依赖**参考图 I2V 锁结构**，纯 T2V 只用于概念探索。
-> 结构严格对齐 `_TEMPLATE.md` 15 模块。提示词正文英文，中文仅作注释。
+> 结构严格对齐 `_TEMPLATE-风格母版.md` 15 模块。提示词正文英文，中文仅作注释。
 
 ---
 
@@ -430,7 +430,7 @@ architectural visualization, cinematic dusk grading, balanced exposure between i
 
 ---
 
-## 13 推荐模型（Model Mapping · 见 models.md）
+## 13 推荐模型（Model Mapping · 见 models-模型能力矩阵.md）
 
 | 需求 | 主推 | 备选 | 为何契合 |
 |---|---|---|---|

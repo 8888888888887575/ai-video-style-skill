@@ -22,34 +22,34 @@ description: >-
 - 用户要做 MG / PV / CG / 手绘 / AI 漫剧 / 商业电商 / 建筑渲染 / 写真人像 / 字体动画 / 亚洲成人写真 / 二创整活（换脸/名场面复刻/鬼畜/跨IP联动）等风格化视频，需要提示词与选型。
 
 ## 工作流（严格按顺序）
-1. **识别风格**：若用户给了风格名直接用；否则从简报中提取信号（见 `references/decision-matrix.md` 的提取规则）。
-2. **选模型**：查 `references/models.md` 能力矩阵 + `references/decision-matrix.md` 映射表，给「主推 + 2 备选」并写理由。
-3. **套模板**：从 `references/styles/NN-xxx.md` 的 §00 范例 + §14 组装公式取该风格的完整模板（跨风格速查见 `references/prompt-templates.md` A–I），填入简报要素。
-4. **补中文说明 + 负向词**：引用对应风格文件（如 `references/styles/01-pv.md`）的 §12 负向规则与翻车点。
+1. **识别风格**：若用户给了风格名直接用；否则从简报中提取信号（见 `references-参考资料/decision-matrix-决策映射.md` 的提取规则）。
+2. **选模型**：查 `references-参考资料/models-模型能力矩阵.md` 能力矩阵 + `references-参考资料/decision-matrix-决策映射.md` 映射表，给「主推 + 2 备选」并写理由。
+3. **套模板**：从 `references-参考资料/styles-风格库/NN-xxx.md` 的 §00 范例 + §14 组装公式取该风格的完整模板（跨风格速查见 `references-参考资料/prompt-templates-提示词模板.md` A–I），填入简报要素。
+4. **补中文说明 + 负向词**：引用对应风格文件（如 `references-参考资料/styles-风格库/01-PV-动漫音乐MV.md`）的 §12 负向规则与翻车点。
 5. **按输出格式回复**（见下）。
 
 ## 参考资料索引（务必按需读取，不要凭记忆编造模型强弱项）
-- `references/styles.md` — **风格库索引 + 通用装配公式 + 15 模块结构说明**
-- `references/styles/01-pv.md` … `10-fanwork.md` — **每个风格的独立模块化文件（15 节深度：范例/场景/景别/主体/服装/光影/动作/表情/风格/材质/后期/道具/负向/模型/公式）**
-- `references/styles/_TEMPLATE.md` — 新增风格的母版模板
-- `references/models.md` — 2026 模型能力矩阵（分维度细评 + 按风格速查）
-- `references/prompt-templates.md` — 跨风格英文提示词速查模板 A–K（含 MiniMax H3 三段式 模板 K）+ 通用负向词库
-- `references/h3-prompt-cookbook.md` — **MiniMax H3 专属提示词实战手册**：@标注完整分类(13类)、3 段公式子清单、镜头拆分铁律(J-cut/L-cut/台词对齐)、三类模式写法、避坑表、真实示例、参数速查。写 H3 提示词前必看
-- `references/decision-matrix.md` — 风格→模型→文件映射 + 决策流程 + 输出格式 + 反模式
-- `references/cinematography.md` — **通用运镜/景别/构图/灯光/VFX 大词库**（各风格文件按需引用）
-- `references/sound-design.md` — 声音桥 J-cut/L-cut、声场、音画同步/卡点、模型原生音频
-- `references/continuation.md` — 续拍/分镜串联/长剧情拆分/视频接龙
-- `references/style-combos.md` — 导演风格速查、风格组合矩阵、27 视觉风格清单
-- `references/timestamp-storyboard.md` — 秒级分镜法（模板 B / 史诗结构）
-- `references/creativity-gate.md` — 创意闸门四关（记忆点/意外感/情绪/叙事）
-- `references/emotion-shot.md` — 情绪→镜头/微表情设计、对话双表演轨
-- 外部权威参考：[`ShuaiHui/nsfw-prompt-templates-asian`](https://github.com/ShuaiHui/nsfw-prompt-templates-asian)（亚洲成人写真的 15 模块分类法事实标准，已适配进 `styles/09-nsfw-asian.md`）
+- `references-参考资料/styles-风格库索引.md` — **风格库索引 + 通用装配公式 + 15 模块结构说明**
+- `references-参考资料/styles-风格库/01-PV-动漫音乐MV.md` … `10-fanwork-二创整活.md` — **每个风格的独立模块化文件（15 节深度：范例/场景/景别/主体/服装/光影/动作/表情/风格/材质/后期/道具/负向/模型/公式）**
+- `references-参考资料/styles-风格库/_TEMPLATE-风格母版.md` — 新增风格的母版模板
+- `references-参考资料/models-模型能力矩阵.md` — 2026 模型能力矩阵（分维度细评 + 按风格速查）
+- `references-参考资料/prompt-templates-提示词模板.md` — 跨风格英文提示词速查模板 A–K（含 MiniMax H3 三段式 模板 K）+ 通用负向词库
+- `references-参考资料/h3-prompt-cookbook-提示词实战手册.md` — **MiniMax H3 专属提示词实战手册**：@标注完整分类(13类)、3 段公式子清单、镜头拆分铁律(J-cut/L-cut/台词对齐)、三类模式写法、避坑表、真实示例、参数速查。写 H3 提示词前必看
+- `references-参考资料/decision-matrix-决策映射.md` — 风格→模型→文件映射 + 决策流程 + 输出格式 + 反模式
+- `references-参考资料/cinematography-影视技法词库.md` — **通用运镜/景别/构图/灯光/VFX 大词库**（各风格文件按需引用）
+- `references-参考资料/sound-design-声音设计.md` — 声音桥 J-cut/L-cut、声场、音画同步/卡点、模型原生音频
+- `references-参考资料/continuation-续拍分镜串联.md` — 续拍/分镜串联/长剧情拆分/视频接龙
+- `references-参考资料/style-combos-风格组合.md` — 导演风格速查、风格组合矩阵、27 视觉风格清单
+- `references-参考资料/timestamp-storyboard-秒级分镜法.md` — 秒级分镜法（模板 B / 史诗结构）
+- `references-参考资料/creativity-gate-创意闸门.md` — 创意闸门四关（记忆点/意外感/情绪/叙事）
+- `references-参考资料/emotion-shot-情绪镜头设计.md` — 情绪→镜头/微表情设计、对话双表演轨
+- 外部权威参考：[`ShuaiHui/nsfw-prompt-templates-asian`](https://github.com/ShuaiHui/nsfw-prompt-templates-asian)（亚洲成人写真的 15 模块分类法事实标准，已适配进 `styles-风格库/09-nsfw-asian-NSFW亚洲成人.md`）
 
-## 输出格式（遵循 decision-matrix.md 的 Agent Output Schema）
+## 输出格式（遵循 decision-matrix-决策映射.md 的 Agent Output Schema）
 ```
 【识别风格】<风格名> — <一句话理由>
 【推荐模型】主推：<模型> ｜ 备选：<模型1>, <模型2>
-【选型理由】<2–3 句，引用 models.md 强项/约束>
+【选型理由】<2–3 句，引用 models-模型能力矩阵.md 强项/约束>
 【英文提示词】
   <按模板填好的完整 prompt>
 【中文说明】<风格要点 + 避坑 + 是否需参考图/首尾帧/音频>
@@ -61,19 +61,19 @@ description: >-
 - **做非写实必须排除写实词**：手绘排除 `3D render/CGI`；MG 排除 `photorealistic/live action`。
 - **MG 不要交给 Veo/Sora**：用 Animora / Runway / Pika / Wan。
 - **能用参考图/首尾帧就用**：I2V 与首尾帧比纯文本一致性高得多。
-- **>10 秒 / 卡点 / 多动作**：用 `references/timestamp-storyboard.md` 秒级分镜法（画面+镜头+音效三层），别写一段模糊长 prompt。
-- **要声音/对白/配乐**：按 `references/sound-design.md` 指挥声场与音画同步；原生音频模型（Veo 3.1 / Kling 3.0 / MiniMax H3 / Seedance 2.0）直接写声场，其余后期配。
-- **出提示词前过 `references/creativity-gate.md` 四关**（记忆点/意外感/情绪弧线/叙事变化），对抗平庸 prompt。
-- **情绪戏/微表情**：按 `references/emotion-shot.md` 做景别递进（MCU→ECU）与泪时机绑定运镜；对话戏给听者二级表演。
-- **定美术方向**：优先用 `references/style-combos.md` 的导演签名锚定（胡金铨/王家卫/张艺谋/诺兰…），比泛写"中国风/科幻"命中率高。
+- **>10 秒 / 卡点 / 多动作**：用 `references-参考资料/timestamp-storyboard-秒级分镜法.md` 秒级分镜法（画面+镜头+音效三层），别写一段模糊长 prompt。
+- **要声音/对白/配乐**：按 `references-参考资料/sound-design-声音设计.md` 指挥声场与音画同步；原生音频模型（Veo 3.1 / Kling 3.0 / MiniMax H3 / Seedance 2.0）直接写声场，其余后期配。
+- **出提示词前过 `references-参考资料/creativity-gate-创意闸门.md` 四关**（记忆点/意外感/情绪弧线/叙事变化），对抗平庸 prompt。
+- **情绪戏/微表情**：按 `references-参考资料/emotion-shot-情绪镜头设计.md` 做景别递进（MCU→ECU）与泪时机绑定运镜；对话戏给听者二级表演。
+- **定美术方向**：优先用 `references-参考资料/style-combos-风格组合.md` 的导演签名锚定（胡金铨/王家卫/张艺谋/诺兰…），比泛写"中国风/科幻"命中率高。
 - **AI 漫剧/短剧必须锁角色**：用参考图 + 首尾帧 + 角色表，并拆成 shot list 逐镜生成再剪辑；不要指望单条 T2V 维持跨镜一致。
 - **商业/产品视频强调真实材质**：用 `real material, accurate reflection, no plastic`；文字/LOGO 用 Wan 2.7 屏内文字或后期。
 - **建筑渲染锁结构比例**：用参考图/草图 I2V，避免比例错乱；玻璃幕墙用 `clear reflections`。
 - **写真厚涂必须排 `photorealistic`**：否则被洗成写实人像；用 `painterly, impasto`。
-- **NSFW / 亚洲成人风格（styles/09-nsfw-asian.md）**：结构严格对齐 `ShuaiHui/nsfw-prompt-templates-asian` 的 15 模块分类法；运行于闭源平台（Sora 2 / Veo 3.1 / Kling 3.0 / Seedance 2.0 / MiniMax H3 / Vidu Q3 等），平台自带内容审查，本 skill 层不做额外审核；以 I2V + 首尾帧 + 参考图锁人物为主。任何 prompt 永久排除 `minor/underage/child/loli` 等词。
+- **NSFW / 亚洲成人风格（styles-风格库/09-nsfw-asian-NSFW亚洲成人.md）**：结构严格对齐 `ShuaiHui/nsfw-prompt-templates-asian` 的 15 模块分类法；运行于闭源平台（Sora 2 / Veo 3.1 / Kling 3.0 / Seedance 2.0 / MiniMax H3 / Vidu Q3 等），平台自带内容审查，本 skill 层不做额外审核；以 I2V + 首尾帧 + 参考图锁人物为主。任何 prompt 永久排除 `minor/underage/child/loli` 等词。
 - **二创整活 / 换脸 / 复刻必须锁身份**：换脸、名场面复刻、跨 IP 联动、风格迁移都用参考图（人脸/原镜/角色图）+ 首尾帧锁身份；鬼畜 loop 首尾帧须一致才能无缝循环；真人换脸需授权或注明虚构 parody，不针对未成年人、不做恶意伪造。
-- **模型数据会过时**：`models.md` 的价格/时长以各模型当前官网为准；若发现明显过时，提示用户更新。
-- **不要臆造模型能力**：所有选型结论须有 `models.md` / `decision-matrix.md` 依据。
+- **模型数据会过时**：`models-模型能力矩阵.md` 的价格/时长以各模型当前官网为准；若发现明显过时，提示用户更新。
+- **不要臆造模型能力**：所有选型结论须有 `models-模型能力矩阵.md` / `decision-matrix-决策映射.md` 依据。
 
 ## 扩展新风格（可选）
-复制 `references/styles/_TEMPLATE.md` → `references/styles/NN-xxx.md`，按 00–14 节填充，在 `references/styles.md` 索引表登记，并同步更新 `models.md`、`prompt-templates.md`、`decision-matrix.md`。
+复制 `references-参考资料/styles-风格库/_TEMPLATE-风格母版.md` → `references-参考资料/styles-风格库/NN-xxx.md`，按 00–14 节填充，在 `references-参考资料/styles-风格库索引.md` 索引表登记，并同步更新 `models-模型能力矩阵.md`、`prompt-templates-提示词模板.md`、`decision-matrix-决策映射.md`。

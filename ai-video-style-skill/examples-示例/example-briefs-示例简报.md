@@ -1,7 +1,7 @@
 # 示例简报与期望输出（Examples）
 
 > 用途：验证 skill 的决策与模板是否可用。每个示例给出「用户简报 → 期望的 agent 输出」。
-> 对照 `decision-matrix.md`、`prompt-templates.md` 与 `references/styles/NN-xxx.md` 检查一致性。
+> 对照 `decision-matrix-决策映射.md`、`prompt-templates-提示词模板.md` 与 `references-参考资料/styles-风格库/NN-xxx.md` 检查一致性。
 
 ---
 
@@ -173,7 +173,7 @@ gentle retouch.
 
 ---
 
-## 示例 9 — 亚洲成人写真（I2V，闭源平台直出；参考 styles/09-nsfw-asian.md）
+## 示例 9 — 亚洲成人写真（I2V，闭源平台直出；参考 styles-风格库/09-nsfw-asian-NSFW亚洲成人.md）
 
 **用户简报**：「做一个居家园内亚洲女性写真视频，暖光、慢转向、衬衫滑肩，性感大胆，在闭源平台直接出。」
 
@@ -188,14 +188,14 @@ gentle retouch.
   slow turn toward camera, hair drift, sultry half-lidded gaze, biting lip,
   cinematic film grain, kodak portra 400 tone,
   --no bad anatomy, extra limbs, disfigured hands, blurry, watermark, minor, underage, child, loli
-【中文说明】以参考图锁人物 + 首尾帧驱动慢运动，不靠文本描述复杂动作；按 styles/09-nsfw-asian.md 的 15 模块拼装，
+【中文说明】以参考图锁人物 + 首尾帧驱动慢运动，不靠文本描述复杂动作；按 styles-风格库/09-nsfw-asian-NSFW亚洲成人.md 的 15 模块拼装，
             更深的逐词模板与 77 例直接引用上游仓库。
 【负向词】bad anatomy, extra limbs, disfigured hands, blurry, watermark, minor, underage, child, loli
 ```
 
 ---
 
-## 示例 10 — 名场面复刻（动漫重演经典电影，参考 styles/10-fanwork.md）
+## 示例 10 — 名场面复刻（动漫重演经典电影，参考 styles-风格库/10-fanwork-二创整活.md）
 
 **用户简报**：「把某经典电影的名场面（走廊大战）用动漫风格重演一遍，要逐帧复刻运镜，角色换成动漫剑客。」
 
@@ -211,7 +211,7 @@ burning corridor with falling debris, volumetric smoke,
 teal-orange cinematic grade, hard key light through fire,
 anime remake of live-action scene, cel shading, 2.5D, homage to the original film,
 film grain, slight chromatic aberration on impact.
-【中文说明】复刻必须附原镜截图 I2V 锁构图与角度；用 shot-for-shot / motion matched frame by frame 表达逐帧；anime remake of live-action scene 锚定「原作→动漫」；负向防构图漂与写实洗回。换脸/联动类同理用参考图锁身份（见 styles/10-fanwork.md §13）。
+【中文说明】复刻必须附原镜截图 I2V 锁构图与角度；用 shot-for-shot / motion matched frame by frame 表达逐帧；anime remake of live-action scene 锚定「原作→动漫」；负向防构图漂与写实洗回。换脸/联动类同理用参考图锁身份（见 styles-风格库/10-fanwork-二创整活.md §13）。
 【负向词】composition drift, wrong angle, deformed face, extra limbs, photorealistic, 3D render
 ```
 
@@ -234,24 +234,24 @@ film grain, slight chromatic aberration on impact.
 声音设计: 配乐 synthwave-erhu；音效 雨/金属/静默
 参考素材: @图片1 白衣剑客设定图（首尾帧锁脸）；下集用本段尾帧作首帧接龙
 【中文说明】>10s 必用 timestamp-storyboard 秒级分镜（画面+镜头+音效三层，标 Bass Drop 秒数）；
-            跨镜一致用参考图+首尾帧+角色表（styles/05）；情绪戏景别递进 MCU→CU（emotion-shot）；
+            跨镜一致用参考图+首尾帧+角色表（styles-风格库/05）；情绪戏景别递进 MCU→CU（emotion-shot）；
             美术方向用胡金铨签名锚定（style-combos）；声音用 J-cut/L-cut 串情绪并预留下集 L-cut（sound-design）；
-            续拍见 continuation.md（return-last-frame 接龙）。
+            续拍见 continuation-续拍分镜串联.md（return-last-frame 接龙）。
 【负向词】composition drift, deformed face, extra limbs, photorealistic, 3D render, melting, text artifact
 ```
 
 ---
 
 ## 校验要点（自检清单）
-- [ ] 每个示例的「识别风格」能在 `references/styles/NN-xxx.md` 找到对应条目（索引见 `references/styles.md`）。
-- [ ] 「推荐模型」与 `decision-matrix.md` 映射表一致。
-- [ ] 英文 prompt 结构 = 该风格文件 §14 组装公式的槽位顺序（跨风格速查见 `prompt-templates.md` A–I）。
+- [ ] 每个示例的「识别风格」能在 `references-参考资料/styles-风格库/NN-xxx.md` 找到对应条目（索引见 `references-参考资料/styles-风格库索引.md`）。
+- [ ] 「推荐模型」与 `decision-matrix-决策映射.md` 映射表一致。
+- [ ] 英文 prompt 结构 = 该风格文件 §14 组装公式的槽位顺序（跨风格速查见 `prompt-templates-提示词模板.md` A–I）。
 - [ ] 负向词针对该风格排除了污染词（非写实排除 3D/realtime；手绘排除 3D/CGI；厚涂排除 photorealistic）。
 - [ ] 中文说明引用了对应风格的翻车点。
 - [ ] 涉及 AI 漫剧/跨镜头叙事时，中文说明必须强调「参考图+首尾帧+角色表」「拆 shot list 逐镜生成」。
 - [ ] 涉及商业/产品时强调真实材质（no plastic）；建筑强调锁结构比例；字体动画强调屏内文字或后期。
 - [ ] 涉及 NSFW / 亚洲成人时，负向词必须含永久禁止词（minor/underage/child/loli）；模型推荐为闭源平台（Sora 2 / Veo 3.1 / Kling 3.0 等）。
 - [ ] 涉及二创整活 / 换脸 / 复刻时，中文说明必须强调「参考图/原镜锁身份」「鬼畜 loop 首尾帧一致」；真人换脸注明授权或虚构 parody、不针对未成年人。
-- [ ] 涉及 >10s / 卡点 / 多动作时，应使用 `timestamp-storyboard.md` 秒级分镜（画面+镜头+音效三层），并在卡点处标节拍秒数。
-- [ ] 涉及声音/对白/配乐时，应引用 `sound-design.md`（J-cut/L-cut、声场、音画同步），并注明是否原生音频模型。
-- [ ] 出提示词前应过 `creativity-gate.md` 四关（记忆点/意外感/情绪/叙事）；情绪戏引用 `emotion-shot.md` 景别递进。
+- [ ] 涉及 >10s / 卡点 / 多动作时，应使用 `timestamp-storyboard-秒级分镜法.md` 秒级分镜（画面+镜头+音效三层），并在卡点处标节拍秒数。
+- [ ] 涉及声音/对白/配乐时，应引用 `sound-design-声音设计.md`（J-cut/L-cut、声场、音画同步），并注明是否原生音频模型。
+- [ ] 出提示词前应过 `creativity-gate-创意闸门.md` 四关（记忆点/意外感/情绪/叙事）；情绪戏引用 `emotion-shot-情绪镜头设计.md` 景别递进。

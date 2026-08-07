@@ -2,7 +2,7 @@
 
 > 定位：叙事驱动的连续 AI 视频，中文创作社区（NeoWoW neo-tv、抖音 AI 漫剧、AIX Studio）最主流品类。
 > 与 PV（单曲节奏向）、CG（单条渲染展示）的根本区别：**有角色、有剧情、跨多镜头甚至多集**，头号约束是**跨镜头角色/世界观一致**。
-> 结构严格对齐 `_TEMPLATE.md` 15 模块。提示词正文英文，中文仅作注释。
+> 结构严格对齐 `_TEMPLATE-风格母版.md` 15 模块。提示词正文英文，中文仅作注释。
 
 ---
 
@@ -401,7 +401,7 @@ chibi 2D anime, limited animation, impact star burst, cartoon dust puff
 
 ---
 
-## 13 推荐模型（Model Mapping · 见 models.md）
+## 13 推荐模型（Model Mapping · 见 models-模型能力矩阵.md）
 
 | 需求 | 主推 | 备选 | 为何契合 |
 |---|---|---|---|

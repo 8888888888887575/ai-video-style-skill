@@ -16,33 +16,33 @@
 ai-video-style-skill/
 ├── SKILL.md                      # 主指令（agent 入口；WorkBuddy 兼容 frontmatter）
 ├── README.md                     # 本文件
-├── references/
-│   ├── styles.md                 # 风格库【索引 + 装配公式 + 15 模块结构总览】
-│   ├── styles/                   # 每个风格一个模块化文件（00–14 共 15 节）
-│   │   ├── _TEMPLATE.md          # 母版：统一模块化模板（装配顺序分类法）
-│   │   ├── 01-pv.md              # PV / 动漫 MV
-│   │   ├── 02-cg.md              # CG / 3D CGI
-│   │   ├── 03-mg.md              # MG / 动态图形
-│   │   ├── 04-handdrawn.md       # 手绘 2D 动画
-│   │   ├── 05-ai-drama.md        # AI 漫剧 / 短剧（含 CG 漫剧 vs 2D 漫剧·命名美学）
-│   │   ├── 06-commercial.md      # 商业 / 电商 / 产品视频
-│   │   ├── 07-architecture.md    # 建筑 / 室内写实渲染
-│   │   ├── 08-portrait.md        # 写真 / 人像摄影（厚涂/Y2K/婚纱/萌宠）
-│   │   └── 09-nsfw-asian.md      # NSFW / 亚洲成人（含上游仓库引用）
-│   │   └── 10-fanwork.md         # 二创整活 / 换脸 / 名场面复刻 / 鬼畜 / 跨IP联动
-│   ├── models.md                 # 2026 模型能力矩阵
-│   ├── prompt-templates.md       # 跨风格英文提示词模板速查（A–K，含 MiniMax H3 三段式 模板 K）+ 负向词库
-│   ├── h3-prompt-cookbook.md     # 【H3 专属】提示词实战手册：@标注13类/3段公式/镜头铁律/三类模式/避坑/真实示例
-│   ├── cinematography.md         # 【技法】运镜/景别/构图/灯光/VFX 大词库
-│   ├── sound-design.md           # 【技法】声音桥 J-cut/L-cut、声场、音画同步
-│   ├── continuation.md           # 【技法】续拍/分镜串联/长剧情拆分/视频接龙
-│   ├── style-combos.md           # 【技法】导演风格速查、风格组合矩阵、27 视觉风格
-│   ├── timestamp-storyboard.md   # 【技法】秒级分镜法（模板 B / 史诗结构）
-│   ├── creativity-gate.md        # 【技法】创意闸门四关（记忆点/意外感/情绪/叙事）
-│   ├── emotion-shot.md           # 【技法】情绪→镜头/微表情设计、对话双表演轨
-│   └── decision-matrix.md        # 风格→模型→风格文件 决策映射 + 输出格式
-└── examples/
-    └── example-briefs.md         # 示例简报 + 期望输出（11 例，用于验证）
+├── references-参考资料/
+│   ├── styles-风格库索引.md                 # 风格库【索引 + 装配公式 + 15 模块结构总览】
+│   ├── styles-风格库/                   # 每个风格一个模块化文件（00–14 共 15 节）
+│   │   ├── _TEMPLATE-风格母版.md          # 母版：统一模块化模板（装配顺序分类法）
+│   │   ├── 01-PV-动漫音乐MV.md              # PV / 动漫 MV
+│   │   ├── 02-CG-三维渲染.md              # CG / 3D CGI
+│   │   ├── 03-MG-动态图形.md              # MG / 动态图形
+│   │   ├── 04-handdrawn-手绘2D动画.md       # 手绘 2D 动画
+│   │   ├── 05-ai-drama-AI漫剧短剧.md        # AI 漫剧 / 短剧（含 CG 漫剧 vs 2D 漫剧·命名美学）
+│   │   ├── 06-commercial-商业电商产品视频.md      # 商业 / 电商 / 产品视频
+│   │   ├── 07-architecture-建筑室内写实渲染.md    # 建筑 / 室内写实渲染
+│   │   ├── 08-portrait-写真人像摄影.md        # 写真 / 人像摄影（厚涂/Y2K/婚纱/萌宠）
+│   │   └── 09-nsfw-asian-NSFW亚洲成人.md      # NSFW / 亚洲成人（含上游仓库引用）
+│   │   └── 10-fanwork-二创整活.md         # 二创整活 / 换脸 / 名场面复刻 / 鬼畜 / 跨IP联动
+│   ├── models-模型能力矩阵.md                 # 2026 模型能力矩阵
+│   ├── prompt-templates-提示词模板.md       # 跨风格英文提示词模板速查（A–K，含 MiniMax H3 三段式 模板 K）+ 负向词库
+│   ├── h3-prompt-cookbook-提示词实战手册.md     # 【H3 专属】提示词实战手册：@标注13类/3段公式/镜头铁律/三类模式/避坑/真实示例
+│   ├── cinematography-影视技法词库.md         # 【技法】运镜/景别/构图/灯光/VFX 大词库
+│   ├── sound-design-声音设计.md           # 【技法】声音桥 J-cut/L-cut、声场、音画同步
+│   ├── continuation-续拍分镜串联.md           # 【技法】续拍/分镜串联/长剧情拆分/视频接龙
+│   ├── style-combos-风格组合.md           # 【技法】导演风格速查、风格组合矩阵、27 视觉风格
+│   ├── timestamp-storyboard-秒级分镜法.md   # 【技法】秒级分镜法（模板 B / 史诗结构）
+│   ├── creativity-gate-创意闸门.md        # 【技法】创意闸门四关（记忆点/意外感/情绪/叙事）
+│   ├── emotion-shot-情绪镜头设计.md           # 【技法】情绪→镜头/微表情设计、对话双表演轨
+│   └── decision-matrix-决策映射.md        # 风格→模型→风格文件 决策映射 + 输出格式
+└── examples-示例/
+    └── example-briefs-示例简报.md         # 示例简报 + 期望输出（11 例，用于验证）
 ```
 
 ## 在 OpenAI Codex 中使用
@@ -50,9 +50,9 @@ Codex 是面向代码仓库的 agentic 模型。把本文件夹放入你的项�
 然后在给 Codex 的指令（或在 `AGENTS.md` / 顶层 prompt）里这样引用：
 
 > 做 AI 视频相关的选型或提示词时，先读 `ai-video-style-skill/SKILL.md`，
-> 再按需读 `ai-video-style-skill/references/` 下的对应文件，按其中的输出格式回复。
+> 再按需读 `ai-video-style-skill/references-参考资料/` 下的对应文件，按其中的输出格式回复。
 
-Codex 会读取 `SKILL.md` 作为指令，并根据需要打开 `references/*.md` 获取具体知识。
+Codex 会读取 `SKILL.md` 作为指令，并根据需要打开 `references-参考资料/*.md` 获取具体知识。
 所有文件都是纯 Markdown，无需任何运行时依赖。
 
 ## 在 WorkBuddy 中使用
@@ -66,6 +66,6 @@ Codex 会读取 `SKILL.md` 作为指令，并根据需要打开 `references/*.md
 - 风格名、模型名保留原文（PV / CG / MG / Sora / Kling …）。
 
 ## 维护
-- 模型能力随版本快速迭代：`models.md` 中的价格/时长/音频支持请以各模型当前官网为准。
-- 新增风格：复制 `references/styles/_TEMPLATE.md` → `references/styles/NN-xxx.md`，按 00–14 节填充，在 `references/styles.md` 索引表登记，并同步更新 `models.md`、`prompt-templates.md`、`decision-matrix.md`。
+- 模型能力随版本快速迭代：`models-模型能力矩阵.md` 中的价格/时长/音频支持请以各模型当前官网为准。
+- 新增风格：复制 `references-参考资料/styles-风格库/_TEMPLATE-风格母版.md` → `references-参考资料/styles-风格库/NN-xxx.md`，按 00–14 节填充，在 `references-参考资料/styles-风格库索引.md` 索引表登记，并同步更新 `models-模型能力矩阵.md`、`prompt-templates-提示词模板.md`、`decision-matrix-决策映射.md`。
 - 数据基准：2026-08 公开评测与厂商规格。

@@ -1,6 +1,6 @@
 # 导演风格速查 + 风格组合矩阵（Director Anchors & Style Combos）
 
-> 来源：`lmr1123/seedance-video-prompt`（导演风格速查）、`ELK-milu/Seedance2-skill`（导演风格速查 10 位）、`aituberapp/ai-video-skill`（27 视觉风格）、本 skill styles/05「命名美学锚定」。
+> 来源：`lmr1123/seedance-video-prompt`（导演风格速查）、`ELK-milu/Seedance2-skill`（导演风格速查 10 位）、`aituberapp/ai-video-skill`（27 视觉风格）、本 skill styles-风格库/05「命名美学锚定」。
 > 核心方法：**用导演/流派视觉签名锚定美术方向**，比泛写"中国风/科幻"命中率高得多。
 
 ---
@@ -13,7 +13,7 @@
 | 韦斯·安德森 | `symmetrical composition, candy color, storybook, centered` | 强迫症对称、童话色 | 奇幻/广告/喜剧 |
 | 张艺谋 | `big color blocks, high saturation, ritual, red` | 大色块、仪式感、红 | 史诗/古装/国风 |
 | 诺兰 | `IMAX, practical scale, low-key, realistic` | 实景宏大、冷峻 | 科幻/悬疑/大场面 |
-| 胡金铨 | `ink-wash negative space, eastern zen, minimal frame, peking-opera movement` | 水墨留白、禅意、京剧身段 | 武侠/国风（styles/05） |
+| 胡金铨 | `ink-wash negative space, eastern zen, minimal frame, peking-opera movement` | 水墨留白、禅意、京剧身段 | 武侠/国风（styles-风格库/05） |
 | 赛博朋克 | `neon, purple-blue-pink, rain, volumetric fog` | 霓虹湿夜 | 科幻/夜景 |
 | 新海诚 | `vivid sky, light shafts, detailed background, nostalgic` | 湛蓝天空、光影、乡愁 | 动漫/治愈 |
 | 是枝裕和 | `natural light, handheld, intimate, muted` | 生活流、自然光 | 日常/家庭 |
@@ -36,7 +36,7 @@
 | 纪录片 + 写实 | 伪纪录 | `documentary handheld × photorealistic` |
 | 黏土 + 治愈 | 定格萌系 | `claymation × soft pastel` |
 
-**联动规则**：组合时**只换美术层 tag**，不冲突的运动/镜头层可共用（见 `cinematography.md`）。
+**联动规则**：组合时**只换美术层 tag**，不冲突的运动/镜头层可共用（见 `cinematography-影视技法词库.md`）。
 
 ---
 
@@ -80,6 +80,6 @@
 
 ## 03 与风格库的关系
 
-- 命名美学锚定是 **styles/05 AI 漫剧**「技术专题：命名美学锚定」的扩展版。
-- 基底风格与 `styles/01-10` 一一对应；本表用于**跨风格检索**与**组合实验**。
+- 命名美学锚定是 **styles-风格库/05 AI 漫剧**「技术专题：命名美学锚定」的扩展版。
+- 基底风格与 `styles-风格库/01-10` 一一对应；本表用于**跨风格检索**与**组合实验**。
 - 组合冲突见各风格文件「禁止组合表」（如手绘必须排 `3D render/CGI`）。
